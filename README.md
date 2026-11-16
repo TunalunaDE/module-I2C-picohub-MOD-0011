@@ -13,7 +13,7 @@ firmware v0.3.1, updatable over I2C from the brain (noknok I2C bootloader, flash
   temperature and the 5 V rail, and protects the board. To the brain it is an ordinary noknok I2C
   module (type `0x07`) on bus A. The board also works with no firmware on it, at 5 V.
 - **Ports:** four Qwiic / STEMMA QT compatible I2C ports on two switchable buses (J3/J4 bus A,
-  J5/J6 bus B, 3.3 V; usable current about **0.55 A per bus A** and **0.6 A per bus B**, shared by
+  J5/J6 bus B, 3.3 V; usable current about **0.55 A on bus A** and **0.6 A on bus B**, shared by
   that bus's ports, measured on rev 1.0: above that the bus switch limits and the bus recovers on
   its own once the load goes), a switched 5 V USB host port (J2, USB 2.0 full speed via the Pico's PIO-USB),
   and a bottom-side four-cluster pogo-pad interface for swappable **mezzanine** boards (raw PD power,

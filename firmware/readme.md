@@ -154,6 +154,9 @@ bench or in the factory: stage-0 + stage-1 + app + metadata over the whole 62 KB
 survives. `bin/picohub.bin` is the app alone, linked at `0x1400`: the over-the-air update image. The
 bootloader binaries come from repo `module-I2C-bootloader` (`firmware/bin/noknok_stage0_x035.bin`,
 `noknok_stage1_x035.bin`). After the factory flash, updates go over I2C; SWD is only for recovery.
+`firmware/full.json` records which app and bootloader parts `picohub_swd.bin` was built from;
+`python tools/mk_full_image.py --check` (from the repo root) fails if it no longer matches `firmware/index.json`.
+`python tools/mk_full_image.py` rebuilds it byte-identical to the `make` output (DEV-197).
 
 ## Event log (read after the fact)
 

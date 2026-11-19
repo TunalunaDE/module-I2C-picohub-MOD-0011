@@ -44,6 +44,22 @@ firmware v0.3.1, updatable over I2C from the brain (noknok I2C bootloader, flash
 - Designing a mezzanine: start with `docs/spec.md` §6. A mezzanine powered from cluster A must gate its
   load with MEZZ_EN and start safely on anything from 5 to 20 V.
 
+## Flashing a blank or bricked board (full image)
+
+`firmware/bin/picohub_swd.bin` is the **full image** for the CH32X035: the noknok bootloader (stage-0 + stage-1), the power
+manager firmware and its valid-app marker, over the whole 62 KB flash. Flash it through **J8** with a WCH-LinkE while
+J1 is powered from a plain 5 V source (not a USB-PD charger):
+
+```
+minichlink -w firmware/bin/picohub_swd.bin flash -b
+```
+
+After that, updates go over I2C from the brain with the app image `firmware/bin/picohub.bin`, which is what
+`firmware/index.json` points at. **Never flash `picohub.bin` at `0x08000000`**: it is linked at `0x1400` and would wipe
+the bootloader. `firmware/full.json` records what the full image was built from;
+`python tools/mk_full_image.py --check` fails if it no longer matches `firmware/index.json`
+(rebuild: `make` in `firmware/src` or `python tools/mk_full_image.py`). Details: [firmware/readme.md](firmware/readme.md).
+
 ## License
 
 - Firmware / code: MIT — see [LICENSE](LICENSE).

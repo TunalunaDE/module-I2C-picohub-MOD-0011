@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "note": "FULL image for a first flash or recovery over SWD (WCH-LinkE) / WCHISPTool: write it at 0x08000000. It is not an OTA payload - firmware/index.json points at the app image.",
+  "module": "picohub",
+  "chip": "ch32x035",
+  "file": "firmware/bin/picohub_swd.bin",
+  "flash_at": "0x08000000",
+  "size": 63488,
+  "crc32": "5cdea098",
+  "app": {
+    "source": "firmware/bin/picohub.bin",
+    "version": "0.3.1",
+    "offset": "0x1400",
+    "size": 16768,
+    "crc32": "3199bc83"
+  },
+  "bootloader": [
+    {
+      "part": "stage0",
+      "source": "module-I2C-bootloader/firmware/bin/noknok_stage0_x035.bin",
+      "commit": "b06bfdd",
+      "offset": "0x0000",
+      "size": 688,
+      "crc32": "9e0296fe"
+    },
+    {
+      "part": "stage1",
+      "source": "module-I2C-bootloader/firmware/bin/noknok_stage1_x035.bin",
+      "commit": "b06bfdd",
+      "offset": "0x0400",
+      "size": 3392,
+      "crc32": "febe532f"
+    }
+  ],
+  "metadata_offset": "0xF500",
+  "layout": 3
+}

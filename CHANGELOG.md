@@ -4,6 +4,10 @@ Newest first. One entry per version bump, written in the same commit as the bump
 `## <version> - <date>` then `- DEV-xx - what changed and why. Breaking: yes/no.`
 Convention: Confluence "Development Conventions" (SD space, page 120160257).
 
+## Full image - 2026-11-19
+
+- DEV-197 - `firmware/bin/picohub_swd.bin` (the full SWD image, unchanged) is now recorded in `firmware/full.json` and checked by `tools/mk_full_image.py --check`. Built from released parts by the new `tools/mk_full_image.py`; `--check` fails when the full image no longer matches `firmware/index.json`, which still points at the app-only OTA image. README: how to flash it, and why the app image must never go to `0x08000000`. No firmware change. Breaking: no.
+
 ## 0.3.1 - 2026-11-05
 
 - DEV-195 - Cold start: the 5 V buck is no longer switched off when it is already running. C35 (22 nF)
